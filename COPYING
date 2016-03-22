@@ -1,0 +1,41 @@
+I started writing P-SDR for my personal enjoyment, though I hope it will
+sooner or later be helpful for other enthusiastic programmers, radio engineers
+and radio amateurs.
+
+I strongly believe in open source code, which gave so much to my professional
+growth, so I'm releasing all of my work to whom is interested in using it.
+
+Thus, where no otherwise declared, source code and documentation of P-SDR
+Library and related tools are released under the so-called 'MIT-Expat' License:
+
+--------------------------------------------------------------------------------
+Copyright (c) 2016 Aurelio Colosimo
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+the Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+--------------------------------------------------------------------------------
+
+My specific intent is making it available to everyone with no restrictions, by
+using what, in my opinion, is the most permissive among popular open source
+software licenses.
+
+For more information about authors and contributors, you can watch the full git
+history of the project:
+
+https://github.com/colosimo/p-sdr
+
+Aurelio Colosimo <aurelio@aureliocolosimo.it>

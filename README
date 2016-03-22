@@ -1,0 +1,32 @@
+Portable Software Defined Radio
+
+P-SDR is a project aiming to provide free source code for the community
+of radio amateurs. "Portable" means that the same code will be able to
+run both on powerful PCs and on smaller embedded devices, even those
+based on MCUs.
+
+Official repository is https://github.com/colosimo/p-sdr
+
+Basic characteristics
+- support for some common SDR hw (starting from dongles based on RTL2832U);
+- support for some common architectures (meaning platform hw + operating
+system);
+- everywhere usage of fixed point numbers; overflow-safe arithmetic functions
+and CORDIC algorithm implemented;
+- strong separation between arch-dependent code (all in arch/ directory) and
+arch-independent code (in src/ and include/);
+- a set of (non portable) tools to be run on PC, mostly for constants
+pre-computation, test or data offline analysis;
+- clean and easily understandable code;
+- a fair amount of comments.
+
+Licensing
+See COPYING for details about licensing.
+
+Contributions
+If anyone wants to contribute, he/she is the most welcome! If desired, I will
+mention the name of contributing people in the documentation.
+Anyone will be required to release copyright of its work under MIT License,
+unless it is not possible, for any reason.
+
+Aurelio Colosimo <aurelio@aureliocolosimo.it>
