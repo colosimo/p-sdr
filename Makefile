@@ -44,6 +44,7 @@ libmk: dirs
 	@echo INTP=$(INTP) >> $(TARGET_MK)
 	@echo UINTP=$(UINTP) >> $(TARGET_MK)
 	@echo CFLAGS=$(CFLAGS) >> $(TARGET_MK)
+	@echo LFLAGS=$(LFLAGS) >> $(TARGET_MK)
 	@echo INCFLAGS=$(INCFLAGS) >> $(TARGET_MK)
 	@echo ARCH=$(ARCH) >> $(TARGET_MK)
 	@echo CROSS_COMPILE=$(CROSS_COMPILE) >> $(TARGET_MK)
