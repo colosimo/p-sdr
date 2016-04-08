@@ -12,7 +12,6 @@ CFLAGS += $(patsubst -I%,-I$(LIBPSDRPATH)/%,$(INCFLAGS))
 CC=$(CROSS_COMPILE)gcc
 
 EXE = psdr_enum
-LFLAGS += -lusb-1.0
 OBJS += main.o
 
 $(EXE): $(OBJS)
