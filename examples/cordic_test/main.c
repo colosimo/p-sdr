@@ -8,8 +8,8 @@
 
 int main(int argc, char **argv)
 {
-	int i = -2765;
-	int q = 6112;
+	int i;
+	int q;
 	int k;
 	intp ph;
 	uintp mag;
