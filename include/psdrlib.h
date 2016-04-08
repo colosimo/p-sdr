@@ -8,6 +8,7 @@
 
 #include <arch.h>
 #include <psdr-devices.h>
+#include <psdr-arch.h>
 
 #ifndef psdr_printf
 #define psdr_printf printf

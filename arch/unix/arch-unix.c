@@ -99,3 +99,39 @@ struct psdr_dev_t *psdr_arch_usb_enum_dev(struct psdr_dev_t *prev,
 	}
 	return NULL;
 }
+
+/* You can call intp2str or uintp2str up to 16 times in the same sdr_printf */
+#if INTP == int16_t
+static char tmp[16][8];
+#elif INTP == int32_t
+static char tmp[16][12];
+#elif INTP == int64_t
+static char tmp[16][22];
+#endif
+
+static unsigned i;
+const char *intp2str(intp x)
+{
+	i = (i + 1) % 16;
+#if INTP == int16_t
+	sprintf(tmp[i], "%hd", (uint16_t)x);
+#elif INTP == int32_t
+	sprintf(tmp[i], "%ld", (int32_t)x);
+#elif INTP == int64_t
+	sprintf(tmp[i], "%ll", (int64_t)x);
+#endif
+	return tmp[i];
+}
+
+const char *uintp2str(intp x)
+{
+	i = (i + 1) % 16;
+#if UINTP == uint16_t
+	sprintf(tmp[i], "%hu", (uint16_t)x);
+#elif UINTP == uint32_t
+	sprintf(tmp[i], "%lu", (uint32_t)x);
+#elif UINTP == uint64_t
+	sprintf(tmp[i], "%llu", (uint64_t)x);
+#endif
+	return tmp[i];
+}
