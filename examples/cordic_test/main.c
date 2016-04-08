@@ -22,7 +22,8 @@ int main(int argc, char **argv)
 		psdr_printf("I=%d Q=%d\n", i, q);
 		psdr_printf("Exact:  Mag=%.0f Phase %.6f * pi\n",
 					sqrt(i*i+q*q), atan2(q, i) / M_PI);
-		psdr_printf("Cordic: Mag=%u Phase %.6f * pi\n", mag, (float)ph / MAXINTP);
+		psdr_printf("Cordic: Mag=%s Phase %.6f * pi\n",
+					uintp2str(mag), (float)ph / MAXINTP);
 		psdr_printf("\n");
 	}
 
