@@ -191,4 +191,19 @@ static inline intp cpx_phase(cpx_t x)
 	return phase;
 }
 
+/* cpx_bitrev_reorder: perform bit reversal reordering on a cpx_t array, given
+ * the proper LUT as input */
+static inline void cpx_bitrev_reorder(cpx_t *v, unsigned N, const int *bitrev)
+{
+	int i;
+	cpx_t tmp;
+	for (i = 0; i < N; i++) {
+		if (i >= bitrev[i])
+			continue;
+		tmp = v[i];
+		v[i] = v[bitrev[i]];
+		v[bitrev[i]] = tmp;
+	}
+}
+
 #endif /* _ARITH_H_ */
