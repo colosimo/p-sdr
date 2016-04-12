@@ -6,8 +6,6 @@
 #include <psdrlib.h>
 #include <psdr-arch.h>
 
-const unsigned int smp_nbits = BPS;
-
 static int lib_idx = 0;
 static struct psdrlib_t libs[PSDRLIB_MAX_INSTANCES];
 

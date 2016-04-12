@@ -6,8 +6,6 @@
 #ifndef _ARITH_H_
 #define _ARITH_H_
 
-extern const unsigned int smp_nbits;
-
 #ifndef INTP
 typedef int intp;
 typedef unsigned uintp;
