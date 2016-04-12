@@ -71,6 +71,15 @@ static inline intp scale(intp x, intp num, intp den)
 	return x * num / den;
 }
 
+/* safe log2: compute base-2 logarithm of x; return 0 if x=0 */
+static inline uintp s_log2(uintp x)
+{
+	uintp r = 0;
+	while (x >>= 1)
+		r++;
+	return r;
+}
+
 /*
  * Complex numbers arithmetic
  */
