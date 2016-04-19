@@ -70,9 +70,9 @@ static inline intp scale(intp x, intp num, intp den)
 }
 
 /* safe log2: compute base-2 logarithm of x; return 0 if x=0 */
-static inline uintp s_log2(uintp x)
+static inline unsigned s_log2(unsigned x)
 {
-	uintp r = 0;
+	unsigned r = 0;
 	while (x >>= 1)
 		r++;
 	return r;
@@ -127,6 +127,22 @@ static inline cpx_t cpx_scale(cpx_t x, intp num, intp den)
 	cpx_t r;
 	r.i = scale(x.i, num, den);
 	r.q = scale(x.q, num, den);
+	return r;
+}
+
+static inline cpx_t cpx_rshift(cpx_t x, int n)
+{
+	cpx_t r;
+	r.i = x.i >> n;
+	r.q = x.q >> n;
+	return r;
+}
+
+static inline cpx_t cpx_lshift(cpx_t x, int n)
+{
+	cpx_t r;
+	r.i = x.i << n;
+	r.q = x.q << n;
 	return r;
 }
 
@@ -200,7 +216,8 @@ static inline intp cpx_phase(cpx_t x)
 
 /* cpx_bitrev_reorder: perform bit reversal reordering on a cpx_t array, given
  * the proper LUT as input */
-static inline void cpx_bitrev_reorder(cpx_t *v, unsigned N, const int *bitrev)
+static inline void cpx_bitrev_reorder(cpx_t *v, const unsigned N,
+    const int *bitrev)
 {
 	int i;
 	cpx_t tmp;
@@ -210,6 +227,33 @@ static inline void cpx_bitrev_reorder(cpx_t *v, unsigned N, const int *bitrev)
 		tmp = v[i];
 		v[i] = v[bitrev[i]];
 		v[bitrev[i]] = tmp;
+	}
+}
+
+/* cpx_bitrev_reorder: perform FFT on cpx_t array, given the proper bitrev and
+ * twiddle LUTs as input */
+static inline void cpx_fft(cpx_t *v, const unsigned N, const int *bitrev,
+    const cpx_t *twiddle)
+{
+	unsigned i, k, sz;
+	cpx_t v1[N];
+	cpx_bitrev_reorder(v, N, bitrev);
+	for (i = 0, sz = 2; sz <= N / 2; i++, sz <<= 1) {
+		for (k = 0; k < N; k++) {
+			cpx_t tw = twiddle[i * N / 2 + k];
+			if (k % sz < N / 2)
+				v1[k] = cpx_sum(v[k], cpx_mul(tw, v[k + sz / 2]));
+			else
+				v1[k] = cpx_sum(v[k], cpx_neg(cpx_mul(tw, v[k - sz / 2])));
+		}
+		if (i % 2) {
+			for (k = 0; k < N; k++)
+				v[k] = cpx_rshift(v1[k], 1);
+		}
+		else {
+			for (k = 0; k < N; k++)
+				v[k] = v1[k];
+		}
 	}
 }
 

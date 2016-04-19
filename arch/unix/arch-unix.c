@@ -3,6 +3,9 @@
  * Released under MIT-Expat License.
  */
 
+#include <errno.h>
+#include <stdlib.h>
+#include <string.h>
 #include <arch.h>
 #include <psdrlib.h>
 #include <libusb.h>
@@ -69,6 +72,11 @@ void *psdr_alloc(unsigned size)
 void psdr_free(void *ptr)
 {
 	free(ptr);
+}
+
+void *psdr_memcpy(void *dest, const void *src, unsigned n)
+{
+	return memcpy(dest, src, n);
 }
 
 struct psdr_dev_t *psdr_arch_usb_enum_dev(struct psdr_dev_t *prev,

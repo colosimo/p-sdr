@@ -28,7 +28,7 @@
 
 int main(int argc, char** argv)
 {
-	unsigned N, nbits, i, k;
+	unsigned N, nbits, i, k, n;
 	const unsigned max_nbits = sizeof(long long) * 8 - 1;
 	FILE *fh = NULL, *fc = NULL;
 	float factor;
@@ -87,23 +87,22 @@ int main(int argc, char** argv)
 
 	fprintf(fh, "#include <arith.h>\n\n");
 	fprintf(fh, COMMON_IDX_COMMENT);
-	fprintf(fh, "extern const cpx_t twiddle%d_%db[%d][%d];\n",
-	    N, nbits, N, N / 2);
+	fprintf(fh, "extern const cpx_t twiddle%d_%db[%ld][%d];\n",
+	    N, nbits, lroundf(log2f(N)) - 1, N / 2);
 
 	fclose(fh);
 
-	fprintf(fc, "const cpx_t twiddle%d_%db[%d][%d] = {\n",
-	    N, nbits, N, N / 2);
+	fprintf(fc, "const cpx_t twiddle%d_%db[%ld][%d] = {\n",
+	    N, nbits, lroundf(log2f(N)) - 1, N / 2);
 
 	factor = powf(2, nbits - 1);
 	intfactor = llround(factor);
 
-	for (i = 0; i < N; i++) {
+	for (n = 2; n < N; n <<= 1) {
 		fprintf(fc, "\n\t{");
-		if (i % 4 == 0)
-			fprintf(fc, " /* i = %u */", i);
+		fprintf(fc, " /* N = %u */", n);
 		for (k = 0; k < N / 2; k++) {
-			float phi = (-2 * M_PI / N) * i * k;
+			float phi = (-2 * M_PI / n) * k;
 			float sf = sin(phi);
 			float cf = cos(phi);
 			long long c, s, f;

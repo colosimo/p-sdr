@@ -7,8 +7,8 @@
 #define _ARCH_UNIX_H_
 
 #include <stdint.h>
-#include <errno.h>
 #include <stdio.h>
-#include <stdlib.h>
+
+#define psdr_printf printf
 
 #endif /* _ARCH_UNIX_H_ */
